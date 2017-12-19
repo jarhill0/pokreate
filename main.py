@@ -1,5 +1,7 @@
 import argparse
+import os
 import sys
+import traceback
 
 import reddit
 import sidebar
@@ -49,4 +51,9 @@ def get_options():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception:
+        here = os.path.dirname(__file__)
+        with open(os.path.join(here, 'errors.txt'), 'a') as f:
+            traceback.print_exc(file=f)
