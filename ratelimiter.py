@@ -67,6 +67,7 @@ def main():
             removed_this_run.append(post.id)  # global object…
             reply = post.reply(REMOVAL_MESSAGE)
             reply.mod.distinguish(sticky=True)
+            reply.disable_inbox_replies()
             post.mod.remove()
 
 
