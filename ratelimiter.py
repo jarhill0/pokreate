@@ -1,6 +1,7 @@
 """Standalone script to remove posts made by a user more than once per day."""
 
 import logging
+import os
 import sys
 import time
 
@@ -9,8 +10,10 @@ import prawcore
 
 import config
 
+LOG_FILE = os.path.join(os.path.dirname(__file__), 'ratelimiter.log')
+
 logging.basicConfig(
-    filename='ratelimiter.log',
+    filename=LOG_FILE,
     level=logging.WARNING)
 
 USER_AGENT = 'pokreate rate limiter'
