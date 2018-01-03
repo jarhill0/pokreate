@@ -14,7 +14,8 @@ LOG_FILE = os.path.join(os.path.dirname(__file__), 'ratelimiter.log')
 
 logging.basicConfig(
     filename=LOG_FILE,
-    level=logging.WARNING)
+    level=logging.WARNING,
+    format='%(asctime)s %(message)s')
 
 USER_AGENT = 'pokreate rate limiter'
 RUN_FREQUENCY = 30 * 60  # in seconds. Assumes it will always be run this often.
