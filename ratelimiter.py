@@ -83,7 +83,7 @@ def allowed(post):
 
         logging.debug('other_post.removed = {}'.format(other_post.removed))
         if other_post.subreddit == post.subreddit \
-                and not other_post.removed \
+                and not (other_post.removed or other_post.banned_by) \
                 and other_post.id not in removed_this_run:  # reddit can be a
             # bit slow to update when a post was just removed by this bot
             return False
