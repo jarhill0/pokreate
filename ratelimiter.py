@@ -24,7 +24,7 @@ REMOVAL_MESSAGE = ('Hi /u/{name},  \nThis post has been removed. You may only '
                    'submit 1 request every 24 hours.\n\n'
                    '*I am a bot, and this action was performed automatically. '
                    'Please [contact the moderators of this subreddit]'
-                   '(/message/compose/?to=/r/{subreddit) if you have any '
+                   '(/message/compose/?to=/r/{subreddit}) if you have any '
                    'questions or concerns.*')
 
 if all((config.username,
