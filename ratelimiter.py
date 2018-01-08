@@ -20,7 +20,12 @@ logging.basicConfig(
 USER_AGENT = 'pokreate rate limiter'
 RUN_FREQUENCY = 30 * 60  # in seconds. Assumes it will always be run this often.
 POST_WINDOW = 60 * 60 * 24  # "rate limit" to check posts in, in seconds.
-REMOVAL_MESSAGE = 'Removed. You may only submit 1 request every 24 hours.'
+REMOVAL_MESSAGE = ('Hi /u/{name},  \nThis post has been removed. You may only '
+                   'submit 1 request every 24 hours.\n\n'
+                   '*I am a bot, and this action was performed automatically. '
+                   'Please [contact the moderators of this subreddit]'
+                   '(/message/compose/?to=/r/{subreddit) if you have any '
+                   'questions or concerns.*')
 
 if all((config.username,
         config.password,
@@ -69,7 +74,9 @@ def main():
         if not allowed(post):
             logging.info('Removing {}'.format(post))
             removed_this_run.append(post.id)  # global object…
-            reply = post.reply(REMOVAL_MESSAGE)
+            message = REMOVAL_MESSAGE.format(name=post.author.name,
+                                             subreddit=post.subreddit.display_name)
+            reply = post.reply(message)
             reply.mod.distinguish(sticky=True)
             reply.disable_inbox_replies()
             post.mod.remove()
